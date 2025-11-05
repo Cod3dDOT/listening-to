@@ -5,7 +5,7 @@
  */
 
 import { getLastSong as lastfmSong } from "./api/lastfm/index.ts";
-import { getStreamingServices } from "./streamingServices/index.ts";
+import { getStreamingServices } from "./streamingServices.ts";
 import { processAlbumCover } from "./thumbnail.ts";
 import type { MusicTrack } from "./types.ts";
 

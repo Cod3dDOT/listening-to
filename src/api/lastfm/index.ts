@@ -4,8 +4,9 @@
  * SPDX-License-Identifier: MIT
  */
 
-import { z } from "zod";
-import { fetchAndValidate } from "..";
+// biome-ignore lint/performance/noNamespaceImport: preferred way
+import * as z from "zod/mini";
+import { fetchAndValidate } from "@/api";
 
 const LastFmImageSchema = z.object({
 	size: z.string(),
@@ -50,7 +51,6 @@ export const getLastSong = async (
 
 	const userResponse = await fetchAndValidate(url, LastFmUserResponseSchema);
 
-	// Default empty track (safe fallback)
 	const emptyTrack: LastFmTrack = {
 		mbid: "",
 		title: "",

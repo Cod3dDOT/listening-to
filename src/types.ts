@@ -4,7 +4,17 @@
  * SPDX-License-Identifier: MIT
  */
 
-import type { StreamingServices } from "./streamingServices/keys.ts";
+export type StreamingServiceProvider = "odesli" | "musicbrainz" | "openwhyd";
+
+export interface StreamingServices {
+	spotify?: string;
+	apple?: string;
+	deezer?: string;
+	youtube?: string;
+	tidal?: string;
+	soundcloud?: string;
+	bandcamp?: string;
+}
 
 export interface MusicTrack {
 	title: string;
@@ -17,11 +27,13 @@ export interface MusicTrack {
 export interface LastFmPluginOptions {
 	userId: string;
 	apiKey: string;
+	providers?: StreamingServiceProvider[];
 	cacheTTL?: number;
 }
 
 export interface ResolvedPluginOptions {
 	userId: string;
 	apiKey: string;
+	providers: StreamingServiceProvider[];
 	cacheTTL: number;
 }

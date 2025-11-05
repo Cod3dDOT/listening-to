@@ -4,16 +4,17 @@
  * SPDX-License-Identifier: MIT
  */
 
-import { z } from "zod";
-import type { StreamingServices } from "../../streamingServices/keys.ts";
-import { fetchAndValidate } from "../index.ts";
+// biome-ignore lint/performance/noNamespaceImport: preferred way
+import * as z from "zod/mini";
+import { fetchAndValidate } from "@/api";
+import type { StreamingServices } from "@/types.ts";
 
 const OpenwhydTrackSchema = z.object({
 	id: z.string(),
 	name: z.string(),
 	eId: z.string(),
-	img: z.string().optional(),
-	url: z.url().optional()
+	img: z.optional(z.string()),
+	url: z.optional(z.url())
 });
 
 const OpenwhydResponseSchema = z.object({

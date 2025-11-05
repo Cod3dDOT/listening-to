@@ -4,23 +4,22 @@
  * SPDX-License-Identifier: MIT
  */
 
-import { z } from "zod";
-import type { StreamingServices } from "../../streamingServices/keys.ts";
-import { fetchAndValidate } from "../index.ts";
+// biome-ignore lint/performance/noNamespaceImport: preferred way
+import * as z from "zod/mini";
+import { fetchAndValidate } from "@/api";
+import type { StreamingServices } from "@/types.ts";
 
 const OdesliLinkSchema = z.object({
 	url: z.url(),
-	nativeAppUriMobile: z.string().optional(),
-	nativeAppUriDesktop: z.string().optional(),
 	entityUniqueId: z.string()
 });
 
 const OdesliEntitySchema = z.object({
 	id: z.string(),
 	type: z.string(),
-	title: z.string().optional(),
-	artistName: z.string().optional(),
-	thumbnailUrl: z.string().optional(),
+	title: z.optional(z.string()),
+	artistName: z.optional(z.string()),
+	thumbnailUrl: z.optional(z.string()),
 	apiProvider: z.string(),
 	platforms: z.array(z.string())
 });
@@ -29,7 +28,7 @@ const OdesliResponseSchema = z.object({
 	entityUniqueId: z.string(),
 	userCountry: z.string(),
 	pageUrl: z.url(),
-	linksByPlatform: z.record(z.string(), OdesliLinkSchema).optional(),
+	linksByPlatform: z.optional(z.record(z.string(), OdesliLinkSchema)),
 	entitiesByUniqueId: z.record(z.string(), OdesliEntitySchema)
 });
 

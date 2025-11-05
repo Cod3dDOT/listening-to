@@ -4,11 +4,14 @@
  * SPDX-License-Identifier: MIT
  */
 
-import type z from "zod";
+// biome-ignore lint/performance/noNamespaceImport: preferred way
+import * as z from "zod/mini";
+
+z.config(z.locales.en());
 
 export async function fetchAndValidate<T>(
 	url: URL,
-	schema: z.ZodSchema<T>
+	schema: z.ZodMiniType<T>
 ): Promise<T | null> {
 	try {
 		const res = await fetch(url);

@@ -9,7 +9,7 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "bunx bunup --exports",
+		"build": "bunup",
 		"test": "bun test",
 		"test:watch": "bun test --watch",
 		"lint": "bunx biome check --write"
@@ -32,6 +32,7 @@
 		"@biomejs/biome": "2.3.3",
 		"@commitlint/types": "^20.0.0",
 		"@types/bun": "^1.3.1",
+		"bunup": "^0.15.13",
 		"sharp": "^0.34.4",
 		"zod": "^4.1.12"
 	},

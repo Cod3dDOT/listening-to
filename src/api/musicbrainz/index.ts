@@ -4,12 +4,13 @@
  * SPDX-License-Identifier: MIT
  */
 
-import { z } from "zod";
-import type { StreamingServices } from "../../streamingServices/keys.ts";
-import { fetchAndValidate } from "../index.ts";
+// biome-ignore lint/performance/noNamespaceImport: preferred way
+import * as z from "zod/mini";
+import { fetchAndValidate } from "@/api";
+import type { StreamingServices } from "@/types.ts";
 
 const makeTrackIdSchema = (key: string) =>
-	z.array(z.object({ [key]: z.array(z.string()).optional() }));
+	z.array(z.object({ [key]: z.optional(z.array(z.string())) }));
 
 const MusicBrainzSpotifySchema = makeTrackIdSchema("spotify_track_ids");
 const MusicBrainzAppleSchema = makeTrackIdSchema("apple_music_track_ids");

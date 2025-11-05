@@ -1,5 +1,10 @@
 {
 	"compilerOptions": {
+		"baseUrl": "./src",
+		"paths": {
+			"@/*": ["*"]
+		},
+
 		"target": "es2024",
 		"module": "preserve",
 		"moduleDetection": "force",

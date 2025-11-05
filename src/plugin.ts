@@ -16,7 +16,10 @@ import { Cache } from "./util/cache.ts";
 const VIRTUAL_MODULE_ID = "virtual:vite-listening-to";
 const RESOLVED_ID = `\0${VIRTUAL_MODULE_ID}`;
 
-const DEFAULT_OPTIONS = {
+const DEFAULT_OPTIONS: ResolvedPluginOptions = {
+	userId: "",
+	apiKey: "",
+	providers: ["musicbrainz", "openwhyd", "odesli"],
 	// biome-ignore lint/style/noMagicNumbers: 5 minutes
 	cacheTTL: 5 * 60 * 1000
 } as const;
